@@ -1,0 +1,44 @@
+phases:
+  - name: combustion_gases
+    elements: [C, H, O]
+    species: [C4H10, C3H8]
+    thermo: ideal-gas
+    state: 
+      T: 300.0
+      P: 101325.0
+    transport: mixture-averaged
+
+species:
+  - name: C4H10  # Butano
+    composition: {C: 4, H: 10}
+    thermo:
+      model: NASA7
+      temperature-ranges: [200.0, 1000.0, 3500.0]
+      data:
+        - [5.02146, -0.014812, 6.0025e-05, -6.1363e-08, 2.25256e-11, -14246.3, 1.97661]
+        - [2.70809, 0.019813, -7.92344e-06, 1.35174e-09, -8.26829e-14, -13359.7, 11.3202]
+    transport:
+      model: gas
+      geometry: nonlinear
+      well-depth: 266.9  # Profundidad del pozo de Lennard-Jones en Kelvin
+      diameter: 4.3  # Diámetro de colisión en Ångstroms
+      dipole: 0.0  # Momento dipolar en Debye
+      polarizability: 5.4  # Polarizabilidad en Å³
+      rotational-relaxation: 1.0  # Relajación rotacional a 298K
+
+  - name: C3H8  # Propano
+    composition: {C: 3, H: 8}
+    thermo:
+      model: NASA7
+      temperature-ranges: [200.0, 1000.0, 3500.0]
+      data:
+        - [4.21087, -0.00570392, 2.16406e-05, -2.00434e-08, 6.45052e-12, -13923.0, 2.66678]
+        - [2.07599, 0.014945, -5.37982e-06, 8.45339e-10, -4.73582e-14, -13109.1, 9.14269]
+    transport:
+      model: gas
+      geometry: nonlinear
+      well-depth: 237.1
+      diameter: 4.0
+      dipole: 0.0
+      polarizability: 4.6
+      rotational-relaxation: 1.0
